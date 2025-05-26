@@ -4,10 +4,26 @@ Configuring a fresh install of a unix-based OS (macOS, Linux) for development pu
 
 For now, just creating some basic configuration files. Installations coming soon.
 
-Due to symlinks, be sure to clone this repository into your home directory (~/.dotfiles).
+Due to symlinks & `stow` requirements, be sure to clone this repository into your home directory (~/.dotfiles).
+
+# Tools
+
+This setup requires [gnu stow](https://www.gnu.org/software/stow/) to be installed. 
+
+Stow will setup the symlinks to the respective tools:
+- [fish shell](https://fishshell.com/)
+- [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 
 # Usage
 
+Add symlinks:
+
 ```bash
-./setup.sh
+stow .
+```
+
+Remove symlinks:
+
+```bash
+stow -D .
 ```
