@@ -13,6 +13,7 @@ This setup requires [gnu stow](https://www.gnu.org/software/stow/) to be install
 Stow will setup the symlinks to the respective tools:
 - [fish shell](https://fishshell.com/)
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch)
+- [Hyprland](https://hyprland.org/)
 
 # Usage
 
