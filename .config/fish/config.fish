@@ -1,10 +1,20 @@
 if status is-interactive
   # Setting intro message
   function fish_greeting
-    # If konsole, run fastfetch
-    if set -q KONSOLE_DBUS_SESSION
-      fastfetch
-    # If iterm2, run fastfetch
+    # Scale the image logo to the current Ghostty window width.
+    if test "$TERM" = "xterm-ghostty"
+      set -l terminal_width (tput cols 2>/dev/null)
+      if not string match -rq '^[0-9]+$' -- "$terminal_width"
+        set terminal_width 120
+      end
+      set -l logo_width (math "min(50, max(12, floor($terminal_width * 0.38)))")
+      if test $terminal_width -lt 110
+        # Give system info the full line width in smaller windows.
+        fastfetch --logo-width $logo_width --logo-position top --disable-linewrap false
+      else
+        fastfetch --logo-width $logo_width
+      end
+    # If iTerm2, run fastfetch
     else if test "$TERM_PROGRAM" = "iTerm.app"
       fastfetch
     else
@@ -46,3 +56,6 @@ if status is-interactive
   end
 
 end
+
+direnv hook fish | source
+
